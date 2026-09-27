@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veyr Store - MLBB Top Up</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #111827;
+      padding: 18px 20px;
+      text-align: center;
+      border-bottom: 1px solid #334155;
+    }
+
+    header h1 {
+      font-size: 28px;
+      color: #a855f7;
+    }
+
+    header p {
+      margin-top: 6px;
+      color: #cbd5e1;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 25px 18px;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 16px;
+      margin-bottom: 18px;
+      border: 1px solid #334155;
+    }
+
+    .card h2 {
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: #cbd5e1;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      border-radius: 10px;
+      border: 1px solid #475569;
+      background: #0f172a;
+      color: white;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    .packages {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .package {
+      background: #334155;
+      border: 2px solid transparent;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .package:hover {
+      border-color: #a855f7;
+    }
+
+    .package strong {
+      display: block;
+      font-size: 18px;
+    }
+
+    .package span {
+      display: block;
+      margin-top: 6px;
+      color: #c084fc;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      background: #a855f7;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 18px;
+    }
+
+    button:hover {
+      background: #9333ea;
+    }
+
+    #message {
+      margin-top: 15px;
+      text-align: center;
+      color: #c4b5fd;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #64748b;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>VEYR STORE</h1>
+    <p>MLBB Top Up</p>
+  </header>
+
+  <main class="container">
+
+    <div class="card">
+      <h2>Player Information</h2>
+
+      <label for="playerId">MLBB Player ID</label>
+      <input
+        type="text"
+        id="playerId"
+        placeholder="Enter your Player ID"
+      >
+
+      <label for="serverId">Server ID</label>
+      <input
+        type="text"
+        id="serverId"
+        placeholder="Enter your Server ID"
+      >
+    </div>
+
+    <div class="card">
+      <h2>Select Diamonds</h2>
+
+      <div class="packages">
+
+        <div class="package" onclick="selectPackage('86 Diamonds - ₱75')">
+          <strong>86 Diamonds</strong>
+          <span>₱75</span>
+        </div>
+
+        <div class="package" onclick="selectPackage('172 Diamonds - ₱145')">
+          <strong>172 Diamonds</strong>
+          <span>₱145</span>
+        </div>
+
+        <div class="package" onclick="selectPackage('257 Diamonds - ₱215')">
+          <strong>257 Diamonds</strong>
+          <span>₱215</span>
+        </div>
+
+        <div class="package" onclick="selectPackage('343 Diamonds - ₱285')">
+          <strong>343 Diamonds</strong>
+          <span>₱285</span>
+        </div>
+
+        <div class="package" onclick="selectPackage('429 Diamonds - ₱355')">
+          <strong>429 Diamonds</strong>
+          <span>₱355</span>
+        </div>
+
+        <div class="package" onclick="selectPackage('514 Diamonds - ₱425')">
+          <strong>514 Diamonds</strong>
+          <span>₱425</span>
+        </div>
+
+      </div>
+
+      <p id="selected"></p>
+
+      <button onclick="placeOrder()">PLACE ORDER</button>
+
+      <div id="message"></div>
+    </div>
+
+  </main>
+
+  <footer>
+    © 2026 Veyr Store. All rights reserved.
+  </footer>
+
+  <script>
+    let selectedPackage = "";
+
+    function selectPackage(packageName) {
+      selectedPackage = packageName;
+      document.getElementById("selected").textContent =
+        "Selected: " + packageName;
+    }
+
+    function placeOrder() {
+      const playerId = document.getElementById("playerId").value.trim();
+      const serverId = document.getElementById("serverId").value.trim();
+      const message = document.getElementById("message");
+
+      if (!playerId || !serverId) {
+        message.textContent = "Please enter your Player ID and Server ID.";
+        return;
+      }
+
+      if (!selectedPackage) {
+        message.textContent = "Please select a diamond package.";
+        return;
+      }
+
+      message.textContent =
+        "Order selected: " + selectedPackage +
+        ". Payment setup will be connected next.";
+    }
+  </script>
+
+</body>
+  </html>
